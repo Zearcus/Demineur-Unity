@@ -6,9 +6,10 @@ public struct Cell
 {
     public enum Type
     {
+        Invalid,
         Empty,
-        Number,
         Mine,
+        Number,
     }
 
     public Vector3Int position;
