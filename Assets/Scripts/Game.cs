@@ -175,7 +175,8 @@ public class Game : MonoBehaviour
 
         Cell cell = GetState(pos.x, pos.y);
 
-        if(cell.revealed == false){
+        if (cell.revealed == false)
+        {
             cell.revealed = true;
         }
         state[pos.x, pos.y] = cell;
