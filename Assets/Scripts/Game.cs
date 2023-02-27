@@ -6,7 +6,9 @@ public class Game : MonoBehaviour
     public int width = 16;
     public int height = 16;
     //nombre de mine sur le tableau
-    private int countMine = 20;
+    public int countMine = 20;
+    // Nombre de Drapeaux
+    public int countFlag;
 
     private Tab tab;
     private Cell[,] state;
@@ -49,6 +51,7 @@ public class Game : MonoBehaviour
                 state[i, j] = cell;
             }
         }
+        countFlag = countMine;
     }
 
     //initialisation des mine aleatoire 
@@ -155,14 +158,23 @@ public class Game : MonoBehaviour
 
         Cell cell = GetState(pos.x, pos.y);
 
-        if (cell.flagged == true)
+        if (cell.flagged == true && countFlag >= 0)
         {
+            countFlag++;
             cell.flagged = false;
         }
         else
         {
+            countFlag--;
             cell.flagged = true;
         }
+        
+        if (countFlag < 0)
+        {
+            countFlag = 0;
+            cell.flagged = false;
+        }
+
         state[pos.x, pos.y] = cell;
         tab.Board(state);
     }
