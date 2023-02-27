@@ -265,8 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f798e24758526364698ca4483fb0008b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 20
-  height: 20
+  width: 16
+  height: 16
 --- !u!1 &1937641382
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,16 +400,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67426475e1b9d7645b604b0dcf6d997d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileUnknown: {fileID: 11400000, guid: 52a91e5169b81584180f56bfa743e7a1, type: 2}
-  tileEmpty: {fileID: 11400000, guid: 9fa656a3c70c2d145a2dbbdb28774dd5, type: 2}
-  tileMine: {fileID: 11400000, guid: 5c6c46d579169cb42a48f3f14e4b0ba3, type: 2}
-  tileflag: {fileID: 11400000, guid: fea28d6dfb092c948af2a5b6cffd5e7b, type: 2}
-  tileExploded: {fileID: 11400000, guid: 1130201a3646ff44db85d387af59b025, type: 2}
-  tileNum1: {fileID: 11400000, guid: 23594ec895b0c1b41a8f44863e50c1ad, type: 2}
-  tileNum2: {fileID: 11400000, guid: 0aa0102ec996eff4eaa4831dc02c72d9, type: 2}
-  tileNum3: {fileID: 11400000, guid: a150b8275c67f8e43ba2012fd6ec8941, type: 2}
-  tileNum4: {fileID: 11400000, guid: 172794d7260654a4e85a8ca2a1901963, type: 2}
-  tileNum5: {fileID: 11400000, guid: 744a41b300a937944b13dae6a8b610dd, type: 2}
-  tileNum6: {fileID: 11400000, guid: df97b2884385d6d47b84afa776b17915, type: 2}
-  tileNum7: {fileID: 11400000, guid: 54aabc0fced491f41819b55017eec830, type: 2}
-  tileNum8: {fileID: 11400000, guid: 0aa855a21fe792a4eb8226054b76af96, type: 2}
+  num1: {fileID: 11400000, guid: 23594ec895b0c1b41a8f44863e50c1ad, type: 2}
+  num2: {fileID: 11400000, guid: 0aa0102ec996eff4eaa4831dc02c72d9, type: 2}
+  num3: {fileID: 11400000, guid: a150b8275c67f8e43ba2012fd6ec8941, type: 2}
+  num4: {fileID: 11400000, guid: 172794d7260654a4e85a8ca2a1901963, type: 2}
+  num5: {fileID: 11400000, guid: 744a41b300a937944b13dae6a8b610dd, type: 2}
+  num6: {fileID: 11400000, guid: df97b2884385d6d47b84afa776b17915, type: 2}
+  num7: {fileID: 11400000, guid: 54aabc0fced491f41819b55017eec830, type: 2}
+  num8: {fileID: 11400000, guid: 0aa855a21fe792a4eb8226054b76af96, type: 2}
+  mine: {fileID: 11400000, guid: 5c6c46d579169cb42a48f3f14e4b0ba3, type: 2}
+  mineOn: {fileID: 11400000, guid: 1130201a3646ff44db85d387af59b025, type: 2}
+  flag: {fileID: 11400000, guid: fea28d6dfb092c948af2a5b6cffd5e7b, type: 2}
+  empty: {fileID: 11400000, guid: 9fa656a3c70c2d145a2dbbdb28774dd5, type: 2}
+  unknown: {fileID: 11400000, guid: 52a91e5169b81584180f56bfa743e7a1, type: 2}

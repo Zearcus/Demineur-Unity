@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public struct Cell 
+public class Cell
 {
+    //crée les 3 Type de case
     public enum Type
     {
-        Invalid,
         Empty,
         Mine,
         Number,
     }
 
-    public Vector3Int position;
+    //les action possible 
     public Type type;
+    public Vector3Int position;
     public int number;
-    public bool revealed;
-    public bool flagged;
     public bool exploded;
+    public bool flagged;
+    public bool revealed;
 }
