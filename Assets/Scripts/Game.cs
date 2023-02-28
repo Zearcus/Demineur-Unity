@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.PlayerSettings;
 
 public class Game : MonoBehaviour
@@ -218,7 +219,7 @@ public class Game : MonoBehaviour
 
     private void SetExploded()
     {
-
+        SceneManager.LoadScene(3);
     }
 
     private void Update()
