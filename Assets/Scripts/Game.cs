@@ -190,38 +190,31 @@ public class Game : MonoBehaviour
         Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
         Vector3Int pos = tab.map.WorldToCell(mouseInWorld);
 
-        if (pos.x >= 0 && pos.x <= width && pos.y >= 0 && pos.y <= height)
-        {
-            Cell cell = GetState(pos.x, pos.y);
 
-            if (cell.flagged == false)
-            {
-                DrawOnClick(cell);
-
-                if (cell.type == Cell.Type.Mine)
-                {
-                    SetExploded();
-                }
-
-                cell.revealed = true;
-            }
-            state[pos.x, pos.y] = cell;
-            tab.Board(state);
-        }
+        Reveal(pos.x, pos.y);
     }
 
-    private void DrawOnClick(Cell cell)
+    private void Reveal(int x, int y)
     {
-        cell.revealed = true;
-        if (cell.type == Cell.Type.Empty)
+        if (x >= 0 && x < width && y >= 0 && y < height)
         {
-            GetState(cell.position.x - 1, cell.position.y);
-            GetState(cell.position.x + 1, cell.position.y);
-            GetState(cell.position.x, cell.position.y - 1);
-            GetState(cell.position.x, cell.position.y + 1);
+            Cell cell = GetState(x, y);
+
+            if (cell.flagged == false && cell.revealed == false)
+            {
+                cell.revealed = true;
+                tab.Board(state);
+                if (cell.type == Cell.Type.Empty)
+                {
+                    // Reveal neighbors
+                    Reveal(x - 1, y);
+                    Reveal(x + 1, y);
+                    Reveal(x, y - 1);
+                    Reveal(x, y + 1);
+                }
+            }
         }
     }
-
 
     private void SetExploded()
     {
