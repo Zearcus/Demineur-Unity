@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Game : MonoBehaviour
 {
@@ -6,7 +8,7 @@ public class Game : MonoBehaviour
     public int width = 16;
     public int height = 16;
     //nombre de mine sur le tableau
-    private int countMine = 20;
+    public int countMine = 20;
 
     private Tab tab;
     private Cell[,] state;
@@ -153,33 +155,64 @@ public class Game : MonoBehaviour
         Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
         Vector3Int pos = tab.map.WorldToCell(mouseInWorld);
 
-        Cell cell = GetState(pos.x, pos.y);
+        if (pos.x >= 0 && pos.x <= width && pos.y >= 0 && pos.y <= height)
+        {
+            Cell cell = GetState(pos.x, pos.y);
 
-        if (cell.flagged == true)
-        {
-            cell.flagged = false;
+            if (cell.flagged == true)
+            {
+                cell.flagged = false;
+            }
+            else
+            {
+                cell.flagged = true;
+            }
+            state[pos.x, pos.y] = cell;
+            tab.Board(state);
         }
-        else
-        {
-            cell.flagged = true;
-        }
-        state[pos.x, pos.y] = cell;
-        tab.Board(state);
     }
 
-    void RevealedNum()
+    private void RevealedNum()
     {
         Vector3 mouseInScreen = Input.mousePosition;
         Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
         Vector3Int pos = tab.map.WorldToCell(mouseInWorld);
 
-        Cell cell = GetState(pos.x, pos.y);
+        if (pos.x >= 0 && pos.x <= width && pos.y >= 0 && pos.y <= height)
+        {
+            Cell cell = GetState(pos.x, pos.y);
 
-        if(cell.revealed == false){
-            cell.revealed = true;
+            if (cell.flagged == false)
+            {
+                DrawOnClick(cell);
+
+                if (cell.type == Cell.Type.Mine)
+                {
+                    SetExploded();
+                }
+
+                cell.revealed = true;
+            }
+            state[pos.x, pos.y] = cell;
+            tab.Board(state);
         }
-        state[pos.x, pos.y] = cell;
-        tab.Board(state);
+    }
+
+    private void DrawOnClick(Cell cell)
+    {
+        cell.revealed = true;
+        if (cell.type == Cell.Type.Empty)
+        {
+            GetState(cell.position.x - 1, cell.position.y);
+            GetState(cell.position.x + 1, cell.position.y);
+            GetState(cell.position.x, cell.position.y - 1);
+            GetState(cell.position.x, cell.position.y + 1);
+        }
+    }
+
+
+    private void SetExploded()
+    {
 
     }
 
