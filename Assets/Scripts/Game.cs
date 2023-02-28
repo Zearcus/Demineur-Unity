@@ -162,25 +162,26 @@ public class Game : MonoBehaviour
         {
             Cell cell = GetState(pos.x, pos.y);
 
-        if (cell.flagged == true && countFlag >= 0)
-        {
-            countFlag++;
-            cell.flagged = false;
-        }
-        else
-        {
-            countFlag--;
-            cell.flagged = true;
-        }
-        
-        if (countFlag < 0)
-        {
-            countFlag = 0;
-            cell.flagged = false;
-        }
+            if (cell.flagged == true && countFlag >= 0)
+            {
+                countFlag++;
+                cell.flagged = false;
+            }
+            else
+            {
+                countFlag--;
+                cell.flagged = true;
+            }
 
-        state[pos.x, pos.y] = cell;
-        tab.Board(state);
+            if (countFlag < 0)
+            {
+                countFlag = 0;
+                cell.flagged = false;
+            }
+
+            state[pos.x, pos.y] = cell;
+            tab.Board(state);
+        }
     }
 
     private void RevealedNum()
@@ -238,4 +239,5 @@ public class Game : MonoBehaviour
             RevealedNum();
         }
     }
+
 }
