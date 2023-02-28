@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,7 @@ public class Game : MonoBehaviour
     public int countMine = 20;
     // Nombre de Drapeaux
     public int countFlag;
+    public int revealedCells;
 
     private Tab tab;
     private Cell[,] state;
@@ -163,25 +165,29 @@ public class Game : MonoBehaviour
         {
             Cell cell = GetState(pos.x, pos.y);
 
-            if (cell.flagged == true && countFlag >= 0)
+            if (cell.revealed == false)
             {
-                countFlag++;
-                cell.flagged = false;
-            }
-            else
-            {
-                countFlag--;
-                cell.flagged = true;
-            }
 
-            if (countFlag < 0)
-            {
-                countFlag = 0;
-                cell.flagged = false;
-            }
+                if (cell.flagged == true && countFlag >= 0)
+                {
+                    countFlag++;
+                    cell.flagged = false;
+                }
+                else
+                {
+                    countFlag--;
+                    cell.flagged = true;
+                }
 
-            state[pos.x, pos.y] = cell;
-            tab.Board(state);
+                if (countFlag < 0)
+                {
+                    countFlag = 0;
+                    cell.flagged = false;
+                }
+
+                state[pos.x, pos.y] = cell;
+                tab.Board(state);
+            }
         }
     }
 
@@ -190,7 +196,6 @@ public class Game : MonoBehaviour
         Vector3 mouseInScreen = Input.mousePosition;
         Vector3 mouseInWorld = Camera.main.ScreenToWorldPoint(mouseInScreen);
         Vector3Int pos = tab.map.WorldToCell(mouseInWorld);
-
 
         Reveal(pos.x, pos.y);
     }
@@ -213,12 +218,38 @@ public class Game : MonoBehaviour
                     Reveal(x, y - 1);
                     Reveal(x, y + 1);
                 }
+                
+                if (cell.type == Cell.Type.Mine) 
+                {
+                    StartCoroutine(Wait(cell));
+                }
+
+                Victory();
             }
         }
     }
 
-    private void SetExploded()
+    private void Victory()
     {
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)  
+            {
+                Cell cell = state[i,j];
+                if(cell.type != Cell.Type.Mine && !cell.revealed)
+                {
+                    return;
+                }
+            }
+        }
+
+        Debug.Log("You Won !");
+        SceneManager.LoadScene(0);
+    }
+
+    IEnumerator Wait(Cell cell)
+    {
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(3);
     }
 
@@ -233,5 +264,4 @@ public class Game : MonoBehaviour
             RevealedNum();
         }
     }
-
 }
