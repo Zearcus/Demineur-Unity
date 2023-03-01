@@ -221,7 +221,7 @@ public class Game : MonoBehaviour
                 
                 if (cell.type == Cell.Type.Mine) 
                 {
-                    StartCoroutine(Wait(cell));
+                    StartCoroutine(Lose(cell));
                 }
 
                 Victory();
@@ -231,12 +231,12 @@ public class Game : MonoBehaviour
 
     private void Victory()
     {
-        for(int i = 0; i < width; i++)
+        for (int i = 0; i < width; i++)
         {
-            for(int j = 0; j < height; j++)  
+            for (int j = 0; j < height; j++)
             {
-                Cell cell = state[i,j];
-                if(cell.type != Cell.Type.Mine && !cell.revealed)
+                Cell cell = state[i, j];
+                if (cell.type != Cell.Type.Mine && !cell.revealed)
                 {
                     return;
                 }
@@ -244,12 +244,12 @@ public class Game : MonoBehaviour
         }
 
         Debug.Log("You Won !");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(4);
     }
 
-    IEnumerator Wait(Cell cell)
+    IEnumerator Lose(Cell cell)
     {
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(3);
     }
 
