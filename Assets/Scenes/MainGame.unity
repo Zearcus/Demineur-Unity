@@ -646,9 +646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f798e24758526364698ca4483fb0008b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 4
-  height: 4
-  countMine: 1
+  width: 16
+  height: 16
+  countMine: 40
   countFlag: 0
   revealedCells: 0
 --- !u!1 &1591057736
