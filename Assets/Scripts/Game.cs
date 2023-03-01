@@ -249,7 +249,7 @@ public class Game : MonoBehaviour
 
     IEnumerator Wait(Cell cell)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0);
         SceneManager.LoadScene(3);
     }
 
