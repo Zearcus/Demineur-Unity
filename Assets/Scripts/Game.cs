@@ -12,6 +12,9 @@ public class Game : MonoBehaviour
     // Nombre de Drapeaux
     public int countFlag = 1;
     public int revealedCells;
+
+    public Timer time;
+
     private Tab tab;
     private Cell[,] state;
 
@@ -270,9 +273,6 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
-
-
-
         if (Input.GetMouseButtonDown(1))
         {
             SetFlag();
