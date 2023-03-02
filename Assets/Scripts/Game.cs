@@ -12,9 +12,10 @@ public class Game : MonoBehaviour
     //nombre de mine sur le tableau
     public int countMine = 20;
     // Nombre de Drapeaux
-    public int countFlag;
+    public int countFlag = 1;
     public int revealedCells;
 
+    public Timer time;
     private Tab tab;
     private Cell[,] state;
 
@@ -221,7 +222,8 @@ public class Game : MonoBehaviour
                 
                 if (cell.type == Cell.Type.Mine) 
                 {
-                    StartCoroutine(Lose(cell));
+                    time.TimeON = false;
+                    SceneManager.LoadScene(3, LoadSceneMode.Additive);
                 }
 
                 Victory();
@@ -242,15 +244,7 @@ public class Game : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log("You Won !");
-        SceneManager.LoadScene(4);
-    }
-
-    IEnumerator Lose(Cell cell)
-    {
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4,LoadSceneMode.Additive);
     }
 
     private void Update()
