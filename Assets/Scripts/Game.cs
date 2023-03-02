@@ -46,9 +46,9 @@ public class Game : MonoBehaviour
                 countMine = 40;
                 break;
             case 3:
-                width = 32;
-                height = 32;
-                countMine = 99;
+                width = 20;
+                height = 20;
+                countMine = 80;
                 break;
         }
         Play();

@@ -1024,6 +1024,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1551310576}
     m_Modifications:
+    - target: {fileID: 5411561245889150564, guid: 12958b2f006062c45ae81663c7836ee1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1551310577}
+    - target: {fileID: 5411561245889150564, guid: 12958b2f006062c45ae81663c7836ee1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonQuitPresses
+      objectReference: {fileID: 0}
     - target: {fileID: 6396278120308824898, guid: 12958b2f006062c45ae81663c7836ee1, type: 3}
       propertyPath: m_RootOrder
       value: 5
