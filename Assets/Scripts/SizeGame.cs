@@ -1,23 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SizeGame : MonoBehaviour
 {
-    public Game game;
-    public Toggle size8x8;
-    public Toggle size16x16;
-    public Toggle size32x32;
-    // Start is called before the first frame update
-    void Start()
+    public void TogglePressed(int bonjour)
     {
-        
+        PlayerPrefs.SetInt("Setting",bonjour);
+        Debug.Log(bonjour);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    public void Awake(){
+        PlayerPrefs.SetInt("Setting", 0);
     }
 }
+

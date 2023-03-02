@@ -1,21 +1,17 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
 
 public class Game : MonoBehaviour
 {
     //taille de la map 
-    public int width = 16;
-    public int height = 16;
+    public int width;
+    public int height;
     //nombre de mine sur le tableau
-    public int countMine = 20;
+    public int countMine;
     // Nombre de Drapeaux
     public int countFlag = 1;
     public int revealedCells;
-
-    public Timer time;
     private Tab tab;
     private Cell[,] state;
 
@@ -23,10 +19,35 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         tab = GetComponentInChildren<Tab>();
+
+
     }
 
     public void Start()
     {
+        switch (PlayerPrefs.GetInt("Setting"))
+        {
+            case 0:
+                width = 16;
+                height = 16;
+                countMine = 40;
+                break;
+            case 1:
+                width = 8;
+                height = 8;
+                countMine = 10;
+                break;
+            case 2:
+                width = 16;
+                height = 16;
+                countMine = 40;
+                break;
+            case 3:
+                width = 32;
+                height = 32;
+                countMine = 99;
+                break;
+        }
         Play();
     }
 
@@ -219,8 +240,8 @@ public class Game : MonoBehaviour
                     Reveal(x, y - 1);
                     Reveal(x, y + 1);
                 }
-                
-                if (cell.type == Cell.Type.Mine) 
+
+                if (cell.type == Cell.Type.Mine)
                 {
                     time.TimeON = false;
                     SceneManager.LoadScene(3, LoadSceneMode.Additive);
@@ -249,6 +270,9 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
+
+
+
         if (Input.GetMouseButtonDown(1))
         {
             SetFlag();
