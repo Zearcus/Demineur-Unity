@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
     public int width;
     public int height;
     //nombre de mine sur le tableau
-    public int countMine = 20;
+    public int countMine;
     // Nombre de Drapeaux
     public int countFlag;
     public int revealedCells;
@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
     {
         tab = GetComponentInChildren<Tab>();
 
-       
+
     }
 
     public void Start()
@@ -30,14 +30,22 @@ public class Game : MonoBehaviour
             case 0:
                 width = 16;
                 height = 16;
+                countMine = 40;
                 break;
             case 1:
                 width = 8;
                 height = 8;
+                countMine = 10;
                 break;
             case 2:
+                width = 16;
+                height = 16;
+                countMine = 40;
+                break;
+            case 3:
                 width = 32;
                 height = 32;
+                countMine = 99;
                 break;
         }
         Play();
